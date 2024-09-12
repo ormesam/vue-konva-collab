@@ -1,4 +1,6 @@
 
+using API.Hubs;
+
 namespace API {
     public class Program {
         public static void Main(string[] args) {
@@ -10,6 +12,7 @@ namespace API {
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddSignalR();
 
             var app = builder.Build();
 
@@ -23,7 +26,7 @@ namespace API {
 
             app.UseAuthorization();
 
-
+            app.MapHub<CanvasHub>("/canvas-hub");
             app.MapControllers();
 
             app.Run();
