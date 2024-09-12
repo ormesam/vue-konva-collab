@@ -20,6 +20,7 @@ namespace API {
             if (app.Environment.IsDevelopment()) {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+                app.UseCors(o => o.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod().AllowCredentials());
             }
 
             app.UseHttpsRedirection();
