@@ -2,8 +2,8 @@
 
 namespace API.Hubs {
     public class CanvasHub : Hub {
-        public async Task SendMessage(string user, string message) {
-            await Clients.All.SendAsync("ReceiveMessage", user, message);
+        public async Task LineUpdated(object line) {
+            await Clients.Others.SendAsync("OnLineUpdated", line);
         }
     }
 }
