@@ -93,7 +93,7 @@ connection.on("OnLineUpdated", (newLine: ILine) => {
   if (line) {
     lines.splice(lines.indexOf(line), 1, newLine);
   } else {
-    lines.push(newLine);
+    lines.unshift(newLine);
   }
 });
 
