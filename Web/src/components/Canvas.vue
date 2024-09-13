@@ -7,14 +7,17 @@
 </template>
 
 <script setup lang="ts">
-import { HubConnectionBuilder } from '@microsoft/signalr';
+import { HttpTransportType, HubConnectionBuilder } from '@microsoft/signalr';
 import { reactive, ref } from 'vue';
 
 const messages = reactive<string[]>([]);
 const txtMessage = ref('');
 
 const connection = new HubConnectionBuilder()
-  .withUrl("https://localhost:7206/canvas-hub")
+  .withUrl(import.meta.env.VITE_HUB_URL, {
+    skipNegotiation: true,
+    transport: HttpTransportType.WebSockets,
+  })
   .build();
 
 connection.on("ReceiveMessage", (user: string, message: string) => {
